@@ -33,3 +33,20 @@ spec:
       port: 8888
       targetPort: 80
   type: ClusterIP
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: sam-ingress
+  namespace: dev
+spec:
+  rules:
+    - http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: sam-service
+                port:
+                  number: 8888
